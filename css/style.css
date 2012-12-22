@@ -1,145 +1,102 @@
-html, body {
-   /* is this necessary ??
-       padding:  0;  */
-    margin:  0; 
-    background:  white;
-}
-
-html * {
-    border:  1px solid black; !important
-}
-
-/* $STRUCTURE */
-
-/*  Why is this necessary? Or is it?
-.wrapper {
-    margin: 0;
-    padding:  0;
-}
-*/
-/* .. and why is THIS here? 
-    .header {
-      /*  position: relative; 
-    }
-*/
-        .starOver {
-            margin-left:  15px;
-            display: inline;
-        }
-
-    .content {
-        padding:  0;
-        border:  0;
-        position:  relative;
-    }
-
-        #cols {
-            position:  absolute;
-            width:  100%;
-        }
-
-            .col-student {
-                float:  left;
-                width:  18%;
-                padding: 0 0 0 5px;
-                margin: 0;
-                border-left:  1px solid black;
-            }
-                .col-header {
-                    background: orange;
-                    display: inline;
-                }
-
-                    /*
-                    .barBG {
-                        position: absolute;
-                        height:  40px;
-                        width:  100%;
-                        z-index: 9;
-                    }
-                    */
-
-                    .alignleft {
-                        float: left;
-                        width:  80%;
-                    }
-                    .alignright {
-                        float:  right;
-                        width:  20%;
-                    }
-
-                .details {
-                    clear:  both;
-                }
-                    .calcBox {
-                        width: 90%;
-                        height:  200px;
-                        border-bottom: 1px solid orange;
-                        margin-top:  5px;
-                        padding-left:  12px;
-                    }
-                    .calcButton li {
-                        display: inline;
-                    }
-                    ul {
-                        list-style-type: none;
-                        margin: 10px 0 0 0;
-                        padding:  0;
-                        line-height: 25px;
-                    }
-
-            .col-family {
-                float: right;
-                width:  20%;
-            }
-
-
-/* $METRO */
+/* $BASE */
  
+html, body {
+    margin:  0; /* reset */
+    background:  white; /* don't assume background is white */
+}
+
 body, h1, h2, h3, h4, h5, p {
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI', sans-serif;
 }
 
 h1, h2, h3 {
     font-weight: 200;
 }
 
-a {
+h2, h3, h4, h5 {
+    padding-left:  20px;
+}
+
+a, a:visited { /* orange blocky buttons */
     font-size: 15px;
     color:  orange;
-    text-decoration: none;
+    text-decoration: none; /* reset */
     font-weight: 800;
+    margin-left:  5px; /* add spacing for calcButtons */
+    margin-right:  auto;
 }
-a:hover {
+a:hover, a:active { /* inverted colors */
     background: orange;
     color: white;
 }
 
-h1 {
+h1 { /* app title */
     font-size:  46px;
-    display: inline;
+    display: inline; /* allows Start Over button to appear directly to the rirght */
+    padding:  0; /* reset */
+    margin-right:  20px; /* add space for the Start Over button at right */
 }
 
-h2 {
+h2 { /* student and family heading */
     font-size: 26px;
-    color: white;
-    letter-spacing: -1px;
     height: 40px;
-    cursor: pointer;
+    color: white;
+    background:  orange;
+    margin:  0;
 }
 
-h3 {
+h3 { /* total dollar amounts */
     font-size: 22px;
+    margin:  30px 0 0 0;
 }
 
-h4 {
+h4 { /* total descriptions */
     font-size: 18px;
     font-weight: 400;
     color:  #a2a2a2;
+    margin:  0 0 20px 0;
 }
 
-h5 {
+h5 { /* total in hours and minutes */
     font-size: 18px;
     font-weight: 800;
-    color:  #989898;
+    color: #989898; /* grey */
+    margin: 10px 0 10px 0;
 }
+
+/* $STRUCTURE */
+ 
+    header { /* contains Title and Start Over button */
+        margin:  20px 0 10px 25px; 
+    }
+      
+    .content { 
+        position:  relative; /* I think this is for floating children */    
+        margin-left:  10px; /* nice space on left ... */
+        margin-right:  10px; /* ... and right */
+    }
+
+        .col-student {
+            float:  left;
+            width:  18%;
+            margin:  0;
+            padding-left:  5px;
+        }
+            .calcBox {
+                width: 90%;
+                height:  200px;
+                border-bottom: 1px solid orange;
+                margin-top:  5px;
+                padding-left:  10px;
+            }
+            ul {
+                list-style-type: none;
+                line-height: 1.5;
+                padding:  0;
+                margin: 10px 0 0 10px;
+            }
+
+        .col-family {
+            float: right;
+            width:  20%;
+        }

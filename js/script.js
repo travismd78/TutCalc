@@ -36,7 +36,7 @@ $(function () {
         //  Initialize method
         initApp: function () {
             // hide startOver button
-            $("#subTitle").hide();
+            $(".starOver").hide();
         }, // end iniApp method
 
         //  Start Over method
@@ -60,9 +60,11 @@ $(function () {
             return parseFloat(money.replace(/[^0-9.-]+/g, ''));
         }, // end fromMoney method
 
-        toMoney: function (num) {
-            // num = isNaN(num) || num === '' || num === null ? 0.00 : num;
-            return "$" + parseFloat(num).toFixed(2);
+        toMoney: function (number) {
+            var negative = number < 0 ? "-" : "";
+            var i = parseInt(number = Math.abs(+number || 0).toFixed(2), 10) + "";
+            var j = (j = i.length) > 3 ? j % 3 : 0;
+            return "$" + negative + (j ? i.substr(0, j) + "," : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + ",") + (2 ? "." + Math.abs(number - i).toFixed(2).slice(2) : "");
         }, // end toMoney method
 
         toEnglish: function (studentMinutes) {
@@ -133,7 +135,7 @@ $(function () {
             // chk to see if it's 0
             if (familyMonthly == 0) {
                 // hide startOver button
-                $("#subTitle").hide();
+                $(".starOver").hide();
             } else {
                 // adjust monthly for family discount if more than one student
                 if (studentCount > 1) {
@@ -144,7 +146,7 @@ $(function () {
                 familyAnnual = familyMonthly * 9;
                 familyAnnual -= familyAnnual * myApp.annualDiscount;
                 // show startOver button
-                $("#subTitle").show();
+                $(".starOver").show();
             } // end if
 
             // format to Money and write to DOM
@@ -202,10 +204,19 @@ $(function () {
     }); // end removeItem click
 
     // Event Handler -  startOver
-    $("#startOver").click(function (e) {
+    $(".startOver").click(function (e) {
         myApp.startOver();
     }); // end startOver click
 
+    // Event Handler - show/hide details
+    $(".col-header").toggle(function (e) {
+        $(e.target).siblings(".details").slideUp();
+        alert(e.target);
+    }, function (e) {
+        $(e.target).siblings(".details").slideDown();
+        $(".alignRight").text("+");
+    });
+
     myApp.initApp();
 
-}); // end document ready
+});  // end document ready
