@@ -36,7 +36,7 @@ $(function () {
         //  Initialize method
         initApp: function () {
             // hide startOver button
-            $(".starOver").hide();
+            $(".startOver").hide();
         }, // end iniApp method
 
         //  Start Over method
@@ -135,7 +135,7 @@ $(function () {
             // chk to see if it's 0
             if (familyMonthly == 0) {
                 // hide startOver button
-                $(".starOver").hide();
+                $(".startOver").hide();
             } else {
                 // adjust monthly for family discount if more than one student
                 if (studentCount > 1) {
@@ -146,7 +146,7 @@ $(function () {
                 familyAnnual = familyMonthly * 9;
                 familyAnnual -= familyAnnual * myApp.annualDiscount;
                 // show startOver button
-                $(".starOver").show();
+                $(".startOver").show();
             } // end if
 
             // format to Money and write to DOM
@@ -208,15 +208,6 @@ $(function () {
         myApp.startOver();
     }); // end startOver click
 
-    // Event Handler - show/hide details
-    $(".col-header").toggle(function (e) {
-        $(e.target).siblings(".details").slideUp();
-        alert(e.target);
-    }, function (e) {
-        $(e.target).siblings(".details").slideDown();
-        $(".alignRight").text("+");
-    });
-
     myApp.initApp();
 
-});  // end document ready
+});   // end document ready
