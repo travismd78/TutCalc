@@ -29,28 +29,27 @@ $(function () {
 
         getRate: function (minutes) {
             var hours = minutes / 60;
-            if (hours > 4) { hours = 4; }
-            return myApp.tuitionRates[hours];
+            if (hours > 4) { hours = 4; } // [business logic] maximum tuition is for 4 hours/week, $182
+            return myApp.tuitionRates[hours]; // lookup the tuitionRates property
         },
 
         //  Initialize method
         initApp: function () {
-            // hide startOver button
             $(".startOver").hide();
-        }, // end iniApp method
+        }, // end initApp
 
         //  Start Over method
         startOver: function (e) {
-            // look through all students
+            // loop through all students
             $('div[data-id^="s"]').each(function () {
                 // remove everything from list
                 $(this).find("li").remove();
                 // reset student total minutes to 0
                 $(this).attr("data-total", "0"); // reset to 0
                 // populate totals on this student
-                myPeople.populateTotals($(this));
+                myPeople.populateStudent($(this));
             }); // end each student loop
-        } // end startOver method
+        } // end startOver
 
     }; // end App object
 
@@ -89,7 +88,7 @@ $(function () {
 
     // People object
     var myPeople = {
-        populateTotals: function (thisStudent) {
+        populateStudent: function (thisStudent) {
             //get this studennt's current minutes from it's data-total
             var studentMinutes = thisStudent.attr("data-total");
 
@@ -119,7 +118,7 @@ $(function () {
                 thisStudent.attr("data-active", "yes");
             } // end if
             myPeople.populateFamily();
-        }, // end populateTotals function    
+        }, // end populateStudent function    
         populateFamily: function () {
             var family = $('div[data-id="family"]');
             var studentCount = $('div[data-active="yes"]').length;
@@ -174,7 +173,7 @@ $(function () {
             // update DOM
             thisStudent.attr("data-total", studentMinutes); // update this student's total
             thisStudent.find("ul").append("<li>" + thisMinutes + " minutes   <a class='removeItem' href='#'>x</a></li>"); // add a line
-            myPeople.populateTotals(thisStudent);   // call function to populate this student's totals
+            myPeople.populateStudent(thisStudent);   // call function to populate this student's totals
 
         }, // end addClass method
         removeClass: function (e) {
@@ -189,7 +188,7 @@ $(function () {
             // update DOM
             thisStudent.attr("data-total", studentMinutes); // update this student's total minutes
             $(e.target).closest('li').remove(); // remove the list item
-            myPeople.populateTotals(thisStudent);   // call function to populate this student's totals
+            myPeople.populateStudent(thisStudent);   // call function to populate this student's totals
         } // end removeClass method
     }; // end People object
 
