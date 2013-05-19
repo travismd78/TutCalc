@@ -207,6 +207,14 @@ $(function () {
         myApp.startOver();
     }); // end startOver click
 
+    // Event Handler - show/hide details
+    $(".col-header").toggle(function (e) {
+        $(e.target).siblings(".details").slideUp();
+    }, function (e) {
+        $(e.target).siblings(".details").slideDown();
+        $(".alignRight").text("+");
+    });
+
     myApp.initApp();
 
 });   // end document ready
