@@ -10,7 +10,7 @@ $(function () {
 
     Number.prototype.toMoney = function () {
         return "$" + this.toFixed(2);
-    }; // end toMoney method
+    };
 
     Number.prototype.toEnglish = function () {
         if (this === 0) { return "0 hours" };
@@ -142,7 +142,7 @@ $(function () {
         });
 
         me.startOver = function () {
-            for (var i = 0, l = me.students().length; i < l; i++) { 
+            for (var i = 0, l = me.students().length; i < l; i++) {
                 me.students()[i].danceClasses.removeAll();
             }
         }; // end startOver
@@ -151,4 +151,4 @@ $(function () {
 
     ko.applyBindings(new myViewModel);
 
-});   // end document ready
+}); // end document ready
