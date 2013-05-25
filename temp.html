@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Temp Page</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Temp Page</h1>
+            <a data-bind="click: startOver" href='#'>Start over</a>
+        </header>
+        <div class="content">
+            <div data-bind="with: students.s1" class="col-student">
+		        <h2 class="col-header">Student One</h2>
+                <div class="calcBox">
+                    <a data-bind="click: addClass(30)" href="#" >+30 </a>
+                    <a data-bind="click: addClass(45)" href="#" >+45 </a>
+                    <a data-bind="click: addClass(60)" href="#" >+60 </a>
+                    <a data-bind="click: addClass(75)" href="#" >+75 </a>
+                    <a data-bind="click: addClass(90)" href="#" >+90 </a>
+                    <ul data-bind="foreach: danceClasses">
+                        <li>
+                            <span data-bind="text: $data"></span> minutes   
+                            <a data-bind="$root.removeClass" href='#'>x</a>
+                        </li>
+                    </ul>
+                </div> <!-- end calcBox -->
+                <h5 data-bind="text: totalMinutes"> hours</h5>
+                <h3 data-bind="text: monthlyTuition"></h3>
+                <h4>month</h4>
+                <h3 data-bind="text: semesterTuition"></h3>
+                <h4>semester</h4>
+                <h3 data-bind="text: annualTuition"></h3>
+                <h4>annual</h4>
+            </div> <!-- end col-student -->
+            
+        </div> <!-- /content -->
+    </div>  <!-- /wrapper -->
+<script src="/js/libs/knockout-2.2.1.js"></script>
+<script src="/js/libs/jquery-1.8.3.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

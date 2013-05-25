@@ -9,28 +9,31 @@
     <div class="wrapper">
         <header>
             <h1>Tuition Calculator</h1>
-            <a class="startOver" href='#'>Start over</a>
+            <a data-bind="click: startOver" href='#'>Start over</a>
         </header>
         <div class="content">
-            <div data-id="s1" data-active="yes" data-total="0" class="col-student">
-		        <h2 class="col-header">Student One</h2>
-                <div class="details">
-                    <div class="calcBox">
-                        <a class="calcButton" href="#" >+30 </a>
-                        <a class="calcButton" href="#" >+45 </a>
-                        <a class="calcButton" href="#" >+60 </a>
-                        <a class="calcButton" href="#" >+75 </a>
-                        <a class="calcButton" href="#" >+90 </a>
-                    <ul></ul>
-                    </div> <!-- end calcBox -->
-                    <h5 class="hours">0 hours</h5>
-                    <h3 class="monthly">$0.00</h3>
-                    <h4>month</h4>
-                    <h3 class="semester">$0.00</h3>
-                    <h4>semester</h4>
-                    <h3 class="annual">$0.00</h3>
-                    <h4>annual</h4>
-                </div> <!-- end details -->
+            <div data-bind="with: students.s1" class="col-student">
+		        <h2 class="col-header">Student <span data-bind="text: studentLabel"></span></h2>
+                <div class="calcBox">
+                    <a data-bind="click: function() { addClass('30'); }" href="#" >+30 </a>
+                    <a data-bind="click: function() { addClass(45); }" href="#" >+45 </a>
+                    <a data-bind="click: function() { addClass(60); }" href="#" >+60 </a>
+                    <a data-bind="click: function() { addClass(75); }" href="#" >+75 </a>
+                    <a data-bind="click: function() { addClass(90); }" href="#" >+90 </a>
+                    <ul data-bind="foreach: danceClasses">
+                        <li>
+                            <span data-bind="text: $data"></span> minutes 
+                            <a data-bind="click: function() { $parent.removeClass($index); }" href='#'>x</a>
+                        </li>
+                    </ul>
+                </div> <!-- end calcBox -->
+                <h5 data-bind="text: totalTime"></h5>
+                <h3 data-bind="text: monthlyTuition().toMoney()"></h3>
+                <h4>month</h4>
+                <h3 data-bind="text: semesterTuition().toMoney()"></h3>
+                <h4>semester</h4>
+                <h3 data-bind="text: annualTuition().toMoney()"></h3>
+                <h4>annual</h4>
             </div> <!-- end col-student -->
             <div data-id="s2" data-active="no" data-total="0" class="col-student">    
 		        <h2>Student Two</h2>
@@ -92,7 +95,7 @@
                     <h4>annual</h4>
                 </div> <!-- /details -->
             </div> <!-- /col-student -->
-            <div data-id="family" data-total="0" class="col-family">
+            <div class="col-family">
 		        <h2>Family Totals</h2>
                 <div class="details">
                     <div class="calcBox">
@@ -102,18 +105,19 @@
                             <li><a href="#">email</a></li>
                         </ul>
                     </div> <!-- /calcBox -->
-                    <h5 class="studentCount">0 students</h5>
-                    <h3 class="monthly">$0.00</h3>
+                    <h5 > students</h5>
+                    <h3></h3>
                     <h4>month</h4>
-                    <h3 class="semester">$0.00</h3>
+                    <h3></h3>
                     <h4>semester</h4>
-                    <h3 class="annual">$0.00</h3>
+                    <h3></h3>
                     <h4>annual</h4>
                 </div> <!-- /details-->
             </div> <!-- /col-family -->
         </div> <!-- /content -->
     </div>  <!-- /wrapper -->
+<script src="/js/libs/knockout-2.2.1.js"></script>
 <script src="/js/libs/jquery-1.8.3.min.js"></script>
-<script src="/js/script.min.js"></script>      
+<script src="/js/script.js"></script>
 </body>
 </html>

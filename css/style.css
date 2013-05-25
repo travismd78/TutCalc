@@ -1,4 +1,5 @@
 /* LESS VARIABLES */
+/* rusty pink */
 /* grey */
 /* $BASE */
 body {
@@ -48,7 +49,7 @@ h2 {
 
   height: 40px;
   color: #ffffff;
-  background: #ffa500;
+  background: #d9007e;
   margin: 0;
 }
 h3 {
@@ -83,7 +84,7 @@ a {
   /* blocky buttons */
 
   font-size: 15px;
-  color: #ffa500;
+  color: #d9007e;
   text-decoration: none;
   /* reset */
 
@@ -97,7 +98,7 @@ a:hover,
 a:active {
   /* inverted colors */
 
-  background: #ffa500;
+  background: #d9007e;
   color: #ffffff;
 }
 /* $STRUCTURE */
@@ -125,7 +126,7 @@ header {
 .calcBox {
   width: 90%;
   height: 200px;
-  border-bottom: 1px solid #ffa500;
+  border-bottom: 1px solid #d9007e;
   margin-top: 5px;
   padding-left: 10px;
 }
