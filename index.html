@@ -9,11 +9,12 @@
     <div class="wrapper">
         <header>
             <h1>Tuition Calculator</h1>
-            <a data-bind="click: startOver" href='#'>Start over</a>
+            <a data-bind="click: startOver, visible: studentCount() > 0" href='#'>Start over</a>
         </header>
         <div class="content">
-            <div data-bind="with: students.s1" class="col-student">
-		        <h2 class="col-header">Student <span data-bind="text: studentLabel"></span></h2>
+            <div data-bind="foreach: students()">
+            <div class="col-student">
+		        <h2 data-bind="text: studentLabel" class="col-header"></h2>
                 <div class="calcBox">
                     <a data-bind="click: function() { addClass(30); }" href="#" >+30 </a>
                     <a data-bind="click: function() { addClass(45); }" href="#" >+45 </a>
@@ -22,8 +23,8 @@
                     <a data-bind="click: function() { addClass(90); }" href="#" >+90 </a>
                     <ul data-bind="foreach: danceClasses">
                         <li>
-                            <span data-bind="text: $data"></span> minutes 
-                            <a data-bind="click: function() { $parent.removeClass($index); }" href='#'>x</a>
+                            <span data-bind="text: $data"></span> minutes
+                            <a data-bind="click: function() { $parent.removeClass($index); }" href='#'> X </a>
                         </li>
                     </ul>
                 </div> <!-- end calcBox -->
@@ -35,66 +36,7 @@
                 <h3 data-bind="text: annualTuition().toMoney()"></h3>
                 <h4>annual</h4>
             </div> <!-- end col-student -->
-            <div data-id="s2" data-active="no" data-total="0" class="col-student">    
-		        <h2>Student Two</h2>
-                <div class="details">
-                    <div class="calcBox">
-                        <a class="calcButton" href="#" >+30 </a>
-                        <a class="calcButton" href="#" >+45 </a>
-                        <a class="calcButton" href="#" >+60 </a>
-                        <a class="calcButton" href="#" >+75 </a>
-                        <a class="calcButton" href="#" >+90 </a>
-                    <ul></ul>
-                    </div> <!-- end calcBox -->
-                    <h5 class="hours">0 hours</h5>
-                    <h3 class="monthly">$0.00</h3>
-                    <h4>month</h4>
-                    <h3 class="semester">$0.00</h3>
-                    <h4>semester</h4>
-                    <h3 class="annual">$0.00</h3>
-                    <h4>annual</h4>
-                </div> <!-- end details -->
-            </div> <!-- end col-student -->
-            <div data-id="s3" data-active="no" data-total="0" class="col-student">
-		        <h2>Student Three</h2>
-                <div class="details">
-                    <div class="calcBox">
-                        <a class="calcButton" href="#" >+30 </a>
-                        <a class="calcButton" href="#" >+45 </a>
-                        <a class="calcButton" href="#" >+60 </a>
-                        <a class="calcButton" href="#" >+75 </a>
-                        <a class="calcButton" href="#" >+90 </a>
-                    <ul></ul>
-                    </div> <!-- /calcBox -->
-                    <h5 class="hours">0 hours</h5>
-                    <h3 class="monthly">$0.00</h3>
-                    <h4>month</h4>
-                    <h3 class="semester">$0.00</h3>
-                    <h4>semester</h4>
-                    <h3 class="annual">$0.00</h3>
-                    <h4>annual</h4>
-                </div> <!-- /details -->
-            </div> <!-- /col-student -->
-            <div data-id="s4" data-active="no" data-total="0" class="col-student">    
-		        <h2>Student Four</h2>
-                <div class="details">
-                    <div class="calcBox">
-                        <a class="calcButton" href="#" >+30 </a>
-                        <a class="calcButton" href="#" >+45 </a>
-                        <a class="calcButton" href="#" >+60 </a>
-                        <a class="calcButton" href="#" >+75 </a>
-                        <a class="calcButton" href="#" >+90 </a>
-                    <ul></ul>
-                    </div> <!-- /calcBox -->
-                    <h5 class="hours">0 hours</h5>
-                    <h3 class="monthly">$0.00</h3>
-                    <h4>month</h4>
-                    <h3 class="semester">$0.00</h3>
-                    <h4>semester</h4>
-                    <h3 class="annual">$0.00</h3>
-                    <h4>annual</h4>
-                </div> <!-- /details -->
-            </div> <!-- /col-student -->
+            </div> <!-- for each -->
             <div class="col-family">
 		        <h2>Family Totals</h2>
                 <div class="details">
@@ -105,12 +47,12 @@
                             <li><a href="#">email</a></li>
                         </ul>
                     </div> <!-- /calcBox -->
-                    <h5 > students</h5>
-                    <h3></h3>
+                    <h5><span data-bind="text: studentCount"></span> student(s)</span></h5>
+                    <h3 data-bind="text: familyMonthly().toMoney()"></h3>
                     <h4>month</h4>
-                    <h3></h3>
+                    <h3 data-bind="text: familySemester().toMoney()"></h3>
                     <h4>semester</h4>
-                    <h3></h3>
+                    <h3 data-bind="text: familyAnnual().toMoney()"></h3>
                     <h4>annual</h4>
                 </div> <!-- /details-->
             </div> <!-- /col-family -->
@@ -118,6 +60,6 @@
     </div>  <!-- /wrapper -->
 <script src="/js/libs/knockout-2.2.1.js"></script>
 <script src="/js/libs/jquery-1.8.3.min.js"></script>
-<script src="/js/script.min.js"></script>
+<script src="/js/script.js"></script>
 </body>
 </html>

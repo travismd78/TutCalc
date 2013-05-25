@@ -13,6 +13,7 @@ $(function () {
     }; // end toMoney method
 
     Number.prototype.toEnglish = function () {
+        if (this === 0) { return "0 hours" };
         var tempHours = Math.floor((this / 60));
         var tempMinutes = (this % 60);
         if (tempHours === 0) {
@@ -50,13 +51,13 @@ $(function () {
         3.5: 169,
         3.75: 175,
         4: 182
-    };
+    }; // end tuitionRates
 
     var getRate = function (minutes) {
         var hours = minutes / 60;
         if (hours > 4) { hours = 4; } // [business logic] maximum tuition is for 4 hours/week
         return tuitionRates[hours]; // lookup the tuitionRates property
-    };
+    }; // end getRate
 
     // Student Constructor
     function Student(label) {
@@ -73,7 +74,6 @@ $(function () {
         }; // end removeClass
 
         me.totalMinutes = ko.computed(function () {
-            // THIS is just to keep track of MINUTES
             var sum = 0;
             for (var i = 0, l = me.danceClasses().length; i < l; i++) {
                 sum += parseInt(me.danceClasses()[i]);
@@ -102,48 +102,53 @@ $(function () {
     function myViewModel() {
         var me = this;
 
-        me.students = {
-            s1: new Student("One"),
-            s2: new Student("Two"),
-            s3: new Student("Three"),
-            s4: new Student("Four")
-        };
+        me.studentCount = ko.observable();
 
-        me.familyCount = ko.computed(function () {
-            return 1;
-        });
+        me.students = ko.observableArray([
+            new Student("Student One"),
+            new Student("Student Two"),
+            new Student("Student Three"),
+            new Student("Student Four")
+        ]);
 
         me.familyMonthly = ko.computed(function () {
-            // for loop of students 
-            var monthlyTotal = 0;
-            monthlyTotal = me.students.s1.monthlyTuition + me.students.s2.monthlyTuition + me.students.s3.monthlyTuition + me.students.s4.monthlyTuition;
-            if (me.familyCount > 1) {
-                monthlyTotal -= monthlyTotal * me.familyDiscount;
-            }
-            return monthlyTotal;
+            // used to get Tuition AND Student Count
+            var monthly = 0;
+            var active = 0;
+            // loop students
+            for (var i = 0, l = me.students().length; i < l; i++) {
+                var thisAmount = me.students()[i].monthlyTuition();
+                if (thisAmount > 0) {
+                    monthly += thisAmount;
+                    active++;
+                } // end if
+            }; // end for each student
+            // apply discount
+            if (active > 1) { monthly -= monthly * familyDiscount; };
+            // set active student count
+            me.studentCount(active);
+            // finish
+            return monthly;
         });
 
         me.familySemester = ko.computed(function () {
-            return me.familyMonthly * 4.5;
+            return me.familyMonthly() * 4.5;
         });
 
         me.familyAnnual = ko.computed(function () {
-            return (me.familyMonthly * 9) * me.annualDiscount;
+            var annual = me.familyMonthly() * 9;
+            annual -= annual * annualDiscount;
+            return annual;
         });
 
-        //  Start Over method
         me.startOver = function () {
-            // loop through all students
-            alert("Hello startOver");
-            // remove everything from list
-
-            // reset student total minutes to 0
-
-            // end each student loop
+            for (var i = 0, l = me.students().length; i < l; i++) { 
+                me.students()[i].danceClasses.removeAll();
+            }
         }; // end startOver
 
     }; // end viewModel constructor
 
     ko.applyBindings(new myViewModel);
 
-}); // end document ready
+});   // end document ready
