@@ -81,11 +81,6 @@ $(function () {
             return sum;
         }); // end totalMinutes property
 
-        me.totalTime = ko.computed(function () {
-            // THIS is for display in ENGLISH
-            return me.totalMinutes().toEnglish();
-        }); // end totalTime
-
         me.monthlyTuition = ko.computed(function () {
             var monthly = getRate(me.totalMinutes());
             return monthly;
@@ -151,4 +146,4 @@ $(function () {
 
     ko.applyBindings(new myViewModel);
 
-});               // end document ready
+}); // end document ready

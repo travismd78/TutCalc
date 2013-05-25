@@ -15,7 +15,7 @@
             <div data-bind="with: students.s1" class="col-student">
 		        <h2 class="col-header">Student <span data-bind="text: studentLabel"></span></h2>
                 <div class="calcBox">
-                    <a data-bind="click: function() { addClass('30'); }" href="#" >+30 </a>
+                    <a data-bind="click: function() { addClass(30); }" href="#" >+30 </a>
                     <a data-bind="click: function() { addClass(45); }" href="#" >+45 </a>
                     <a data-bind="click: function() { addClass(60); }" href="#" >+60 </a>
                     <a data-bind="click: function() { addClass(75); }" href="#" >+75 </a>
@@ -27,7 +27,7 @@
                         </li>
                     </ul>
                 </div> <!-- end calcBox -->
-                <h5 data-bind="text: totalTime"></h5>
+                <h5 data-bind="text: totalMinutes().toEnglish()"></h5>
                 <h3 data-bind="text: monthlyTuition().toMoney()"></h3>
                 <h4>month</h4>
                 <h3 data-bind="text: semesterTuition().toMoney()"></h3>
@@ -118,6 +118,6 @@
     </div>  <!-- /wrapper -->
 <script src="/js/libs/knockout-2.2.1.js"></script>
 <script src="/js/libs/jquery-1.8.3.min.js"></script>
-<script src="/js/script.js"></script>
+<script src="/js/script.min.js"></script>
 </body>
 </html>

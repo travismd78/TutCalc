@@ -140,23 +140,3 @@ header {
   float: right;
   width: 20%;
 }
-/* $RESPONSIVE */
-@media screen and (max-width: 980px) {
-  .col-student {
-    float: left;
-    width: 220px;
-  }
-  .col-family {
-    float: left;
-    clear: both;
-    width: 80%;
-  }
-}
-@media screen and (max-width: 700px) {
-  
-}
-@media screen and (max-width: 480px) {
-  ul {
-    height: auto;
-  }
-}
